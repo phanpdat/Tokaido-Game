@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(UnityEngine.CharacterController))]
 public class PlayerMover : MonoBehaviour
 {
     public float moveSpeed = 3.5f;
@@ -12,14 +12,14 @@ public class PlayerMover : MonoBehaviour
     public string walkBool = "isWalking";
 
 
-    CharacterController cc;
+    UnityEngine.CharacterController cc;
     Vector3 target;
     bool moving;
     public event Action OnArriveDestination;
 
     void Awake()
     {
-        cc = GetComponent<CharacterController>();
+        cc = GetComponent<UnityEngine.CharacterController>();
         if (!animator) animator = GetComponent<Animator>();
         target = transform.position;
     }
@@ -43,7 +43,7 @@ public class PlayerMover : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), rotateSpeed * Time.deltaTime);
 
         Vector3 move = dir * moveSpeed * Time.deltaTime;
-        move.y = -2f * Time.deltaTime;
+        //move.y = -2f * Time.deltaTime;
         cc.Move(move);
     }
 
